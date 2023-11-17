@@ -23,25 +23,20 @@ class Person {
 }
 
 abstract class House {
-    protected door: boolean;
+    protected door: boolean = false;
     protected key: Key;
     protected tenants: Person[] = []
 
     constructor(key: Key) {
-        this.door = false;
         this.key = key;
     }
 
-    protected isCorrectKey(myKey: Key): boolean {
-        return myKey.getSignature() === this.key.getSignature()
-    }
-
     comeIn(person: Person) {
-        if (this.door && this.isCorrectKey(person.getKey())) {
+        if (this.door) {
             this.tenants.push(person);
-            console.log('The door is open. Welcome home!')
+            console.log('The door is open. Welcome home!');
         } else {
-            console.log('The door is closed')
+            console.log('The door is closed');
         }
     }
 
@@ -51,7 +46,7 @@ abstract class House {
 class MyHouse extends House {
 
     openDoor(myKey: Key): void {
-        if (this.isCorrectKey(myKey)) {
+        if (myKey.getSignature() === this.key.getSignature()) {
             this.door = true;
             console.log('True key')
         } else {
