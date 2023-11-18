@@ -35,6 +35,7 @@ abstract class House {
         if (this.door) {
             this.tenants.push(person);
             console.log('The door is open. Welcome home!');
+            this.door = false;
         } else {
             console.log('The door is closed');
         }
